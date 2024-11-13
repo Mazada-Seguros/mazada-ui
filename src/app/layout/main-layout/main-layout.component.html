@@ -1,0 +1,30 @@
+<!--@@include('./partials/head-css.html')-->
+<!-- Begin page -->
+<div id="wrapper">
+    <!--<app-menu></app-menu>-->
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <app-topbar></app-topbar>
+        <div class="content">
+            <!-- Start Content-->
+            <div class="container-fluid">
+                <router-outlet />
+            </div> <!-- container -->
+        </div> <!-- content -->
+        <app-footer></app-footer>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+</div>
+<!-- END wrapper -->
+<app-right-sidebar></app-right-sidebar>
+<!--@@include('./partials/footer-scripts.html')-->
+
+<!-- Vendor js -->
+<script src="/srs/assets/js/vendor.min.js"></script>
+
+<!-- App js -->
+<script src="/srs/assets/js/app.min.js"></script>

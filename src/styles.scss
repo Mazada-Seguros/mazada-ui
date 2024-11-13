@@ -1,0 +1,71 @@
+/*
+Template Name: Ubold - Responsive Bootstrap 5 Admin Dashboard
+Version: 6.2.0
+Author: CoderThemes
+Email: support@coderthemes.com
+File: Main Css File
+*/
+
+// Core files
+@import "./../node_modules/bootstrap/scss/functions";
+@import "./../node_modules/bootstrap/scss/variables";
+@import "./styles/config/variables";
+@import "./../node_modules/bootstrap/scss/mixins";
+
+// Icons
+@import "./styles/icons.scss";
+
+// Structure
+@import "./styles/custom/structure/topbar";
+//@import "./styles/custom/structure/right-sidebar";
+//@import "./styles/custom/structure/page-head";
+@import "./styles/custom/structure/sidenav";
+//@import "./styles/custom/structure/two-column-menu";
+//@import "./styles/custom/structure/horizontal";
+//@import "./styles/custom/structure/footer";
+
+// Plugins
+@import "./styles/custom/plugins/waves";
+//@import "./styles/custom/plugins/apexcharts";
+//@import "./styles/custom/plugins/ion-rangeslider";
+//@import "./styles/custom/plugins/calendar";
+//@import "./styles/custom/plugins/colorpicker";
+//@import "./styles/custom/plugins/sparkline-chart";
+//@import "./styles/custom/plugins/datatable";
+//@import "./styles/custom/plugins/daterange";
+//@import "./styles/custom/plugins/form-wizard";
+//@import "./styles/custom/plugins/select2";
+//@import "./styles/custom/plugins/slimscroll";
+//@import "./styles/custom/plugins/toaster";
+//@import "./styles/custom/plugins/sweetalert";
+//@import "./styles/custom/plugins/selectize";
+//@import "./styles/custom/plugins/tippy";
+//@import "./styles/custom/plugins/nestable-list";
+//@import "./styles/custom/plugins/hopscotch";
+//@import "./styles/custom/plugins/flot";
+//@import "./styles/custom/plugins/morris";
+//@import "./styles/custom/plugins/chartjs";
+//@import "./styles/custom/plugins/chartist";
+//@import "./styles/custom/plugins/c3";
+//@import "./styles/custom/plugins/ricksaw";
+//@import "./styles/custom/plugins/responsive-table";
+//@import "./styles/custom/plugins/footables";
+//@import "./styles/custom/plugins/bootstrap-tables";
+//@import "./styles/custom/plugins/tablesaw";
+//@import "./styles/custom/plugins/jsgrid";
+//@import "./styles/custom/plugins/multiple-select";
+//@import "./styles/custom/plugins/autocomplete";
+//@import "./styles/custom/plugins/bootstrap-touchspin";
+//@import "./styles/custom/plugins/parsley";
+//@import "./styles/custom/plugins/flatpickr";
+//@import "./styles/custom/plugins/clockpicker";
+//@import "./styles/custom/plugins/quilljs-editor";
+//@import "./styles/custom/plugins/dropzone";
+//@import "./styles/custom/plugins/dropify";
+//@import "./styles/custom/plugins/x-editable";
+//@import "./styles/custom/plugins/cropper";
+//@import "./styles/custom/plugins/google-maps";
+//@import "./styles/custom/plugins/vector-maps";
+//@import "./styles/custom/plugins/mapeal-maps";    
+//@import "./styles/custom/plugins/datepicker";
+//@import "./styles/custom/plugins/dragula";

@@ -1,0 +1,22 @@
+//
+// authentication.scss
+//
+
+@import './../../../styles.scss'; // Import the global styles or variables
+
+// authentication pages background
+body {
+    &.authentication-bg {
+        background-color: #00acc1;
+        background-size: cover;
+        background-position: center;
+
+        footer{
+            background-color: transparent !important;
+        }
+    }
+
+    &.authentication-bg-pattern {
+        background-image: url("/src/assets/images/bg-pattern.png");
+    }    
+}
