@@ -25,19 +25,27 @@
                                     <p class="text-muted mb-4 mt-3">Enter your email address and password to access admin panel.</p>
                                 </div>
 
-                                <form action="#">
+                                <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
                                     <div class="mb-3">
-                                        <label for="emailaddress" class="form-label">Email address</label>
-                                        <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                        <label for="emailaddress" class="form-label">Correo Electrónico</label>
+                                        <input type="email" id="emailaddress" formControlName="email" class="form-control" 
+                                            [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+                                        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['email'].errors['required']">El correo electrónico es un campo obligatorio</div>
+                                        </div>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="password" class="form-label">Password</label>
+                                        <label for="password" class="form-label">Contraseña</label>
                                         <div class="input-group input-group-merge">
-                                            <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                                            <input type="password" id="password" formControlName="password" class="form-control" 
+                                                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
                                             <div class="input-group-text" data-password="false">
                                                 <span class="password-eye"></span>
+                                            </div>
+                                            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                                <div *ngIf="f['password'].errors['required']">La contraseña es un campo obligatorio</div>
                                             </div>
                                         </div>
                                     </div>
@@ -50,7 +58,10 @@
                                     </div>
 
                                     <div class="text-center d-grid">
-                                        <button class="btn btn-primary" type="submit"> Log In </button>
+                                        <button [disabled]="loading" class="btn btn-primary" type="submit"> 
+                                            <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                                            Log In 
+                                        </button>
                                     </div>
 
                                 </form>

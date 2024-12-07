@@ -5,7 +5,7 @@
 @import '../../../../../styles.scss';
 
 .bg-pattern {
-    background-image: url("/src/assets/images/bg-pattern-2.png");
+    background-image: url("../../../../../assets/images/bg-pattern-2.png");
     background-size: cover;
 }
 
@@ -23,7 +23,7 @@ body {
     }
 
     &.authentication-bg-pattern {
-        background-image: url("/src/assets/images/bg-pattern.png");
+        background-image: url("../../../../../assets/images/bg-pattern.png");
     }    
 }
 
