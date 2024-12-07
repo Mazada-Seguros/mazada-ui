@@ -1,0 +1,18 @@
+<!-- Modal -->
+<div class="modal fade show d-block" id="custom-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h4 class="modal-title" id="myCenterModalLabel">{{ title }}</h4>
+                <button type="button" class="btn-close" aria-hidden="true" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body p-4">
+                <ng-container #dynamicContent></ng-container>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show"></div>
