@@ -1,0 +1,29 @@
+<form [formGroup]="phoneForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="phones">
+        @for(phone of phones.controls; track $index) {
+                <div [formGroupName]="$index" class="row mb-3">
+                    <div class="col-md-5">
+                        <label for="number" class="form-label">Número de Teléfono:</label>
+                        <input id="number" class="form-control" formControlName="number" type="text" placeholder="Número de teléfono" />
+                    </div>
+                    <div class="col-md-5">
+                        <label for="type" class="form-label">Tipo de Teléfono:</label>
+                        <select id="type" formControlName="type" class="form-control">
+                            <option value="">Seleccionar tipo</option>
+                            <option value="mobile">Móvil</option>
+                            <option value="home">Casa</option>
+                            <option value="work">Trabajo</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <br />
+                        <a href="javascript:void(0);" class="action-icon" (click)="removePhone($index)">
+                            <i class="mdi mdi-delete"></i>
+                        </a>
+                    </div>
+                </div>
+        }
+    </div>     
+    <button type="button" (click)="addPhone()">Agregar Teléfono</button>
+    <br />
+</form>

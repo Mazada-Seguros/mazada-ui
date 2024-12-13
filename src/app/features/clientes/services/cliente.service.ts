@@ -3,6 +3,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { PersonaNatural } from '../models/persona-natural.model';
 import { Observable } from 'rxjs';
+import { Response } from '../../../core/models/response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
-  get(): Observable<PersonaNatural[]> {
-    return this.http.get<PersonaNatural[]>(this.apiUrl);
+  get(): Observable<Response<PersonaNatural[]>> {
+    return this.http.get<Response<PersonaNatural[]>>(this.apiUrl);
   }
 }

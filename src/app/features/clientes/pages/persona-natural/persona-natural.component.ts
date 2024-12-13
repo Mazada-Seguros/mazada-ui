@@ -26,9 +26,9 @@ export class PersonaNaturalComponent implements OnInit {
   }
 
   fetchList(): void {
-    this.clienteService.get().subscribe((data) => {
-      console.log(data);
-      this.list = data;
+    this.clienteService.get().subscribe((response) => {
+      console.log(response);
+      this.list = response.data;
     });
   }
 

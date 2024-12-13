@@ -1,4 +1,4 @@
-<app-page-title title="Persona Natural" subtitle="Cliente"></app-page-title>
+<app-page-title title="Persona Juridica" subtitle="Cliente"></app-page-title>
 
 <div class="row">
     <div class="col-12">
@@ -28,11 +28,8 @@
                                     </div>
                                 </th>
                                 <th>Nombre</th>
-                                <th>Nombre Corto</th>
-                                <th>Número de Identificación</th>
-                                <th>Teléfono</th>
-                                <th>Correo Eletrónico</th>
-                                <th>Empresa</th>
+                                <th>NIT</th>
+                                <th>Tipo de Empresa</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -48,13 +45,10 @@
                                     </td>
                                     <td class="table-user">
                                         <img src="assets/images/users/user-4.jpg" alt="table-user" class="me-2 rounded-circle">
-                                        <a href="javascript:void(0);" class="text-body fw-semibold">{{ item.primerNombre }}</a>
+                                        <a href="javascript:void(0);" class="text-body fw-semibold">{{ item.nombre }}</a>
                                     </td>
-                                    <td>{{ item.nombreCorto }}</td>
-                                    <td>{{ item.numeroDeIdentificacion }}</td>
-                                    <td>{{ item.numeroDeTelefono }}</td>
-                                    <td>{{ item.correoElectronico }}</td>
-                                    <td>{{ item.empresa }}</td>
+                                    <td>{{ item.nit }}</td>
+                                    <td>{{ item.tipoDeEmpresa }}</td>
                                     <td>
                                         <span class="badge badge-soft-success">Active</span>
                                     </td>
@@ -64,7 +58,7 @@
                                     </td>
                                 </tr>
                             } @empty {
-                            <p>No hay personas naturales ingresadas en el sistema aun!</p>
+                            <p>¡No hay personas juridicas ingresadas en el sistema aun!</p>
                           }
                         </tbody>
                     </table>
