@@ -1,4 +1,4 @@
-import { Injectable, ComponentRef, Injector, ApplicationRef, ComponentFactoryResolver } from '@angular/core';
+import { Injectable, ComponentRef, Injector, ApplicationRef, ComponentFactoryResolver, Input } from '@angular/core';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
 
 @Injectable({
@@ -7,13 +7,15 @@ import { ModalComponent } from '../../shared/components/modal/modal.component';
 export class ModalService {
   private modalComponentRef?: ComponentRef<ModalComponent>;
 
+  @Input() action!: (event: Event) => void; // Declarar tipo de la función
+
   constructor(
     private resolver: ComponentFactoryResolver,
     private injector: Injector,
     private appRef: ApplicationRef
   ) {}
 
-  open(component: any, data?: any): void {
+  open(component: any, title: string, data?: any): void {
     const factory = this.resolver.resolveComponentFactory(ModalComponent);
     this.modalComponentRef = factory.create(this.injector);
 
@@ -23,8 +25,10 @@ export class ModalService {
     document.body.appendChild(modalElement);
 
     this.modalComponentRef.instance.childComponent = component;
+    this.modalComponentRef.instance.title = title;
     this.modalComponentRef.instance.data = data;
     this.modalComponentRef.instance.closeModal = () => this.close();
+    this.modalComponentRef.instance.submit = this.submit.bind(this);
   }
 
   close(): void {
@@ -32,5 +36,10 @@ export class ModalService {
       this.appRef.detachView(this.modalComponentRef.hostView);
       this.modalComponentRef.destroy();
     }
+  }
+
+  submit(event: Event): void {
+    this.action(event);
+    this.close();
   }
 }

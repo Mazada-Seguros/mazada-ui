@@ -32,7 +32,8 @@ export class PersonaNaturalComponent implements OnInit {
     });
   }
 
-  openModal(): void {
-    this.modalService.open(AddPersonaNaturalComponent, { title: "Nueva Persona Natural" });
+  openModal(id: number | undefined): void {
+    this.modalService.open(AddPersonaNaturalComponent, "Nueva Persona Natural", { id : id });
+    this.fetchList();
   }
 }

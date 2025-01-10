@@ -6,7 +6,7 @@
             <div class="card-body">
                 <div class="row mb-2">
                     <div class="col-sm-4">
-                        <a href="javascript:void(0);" class="btn btn-danger mb-2" (click)="openModal()"><i class="mdi mdi-plus-circle me-2"></i> Nuevo Cliente</a>
+                        <a href="javascript:void(0);" class="btn btn-danger mb-2" (click)="openModal(undefined)"><i class="mdi mdi-plus-circle me-2"></i> Nuevo Cliente</a>
                     </div>
                     <div class="col-sm-8">
                         <div class="text-sm-end">
@@ -27,12 +27,14 @@
                                         <label class="form-check-label" for="customCheck1">&nbsp;</label>
                                     </div>
                                 </th>
-                                <th>Nombre</th>
+                                <th>Primer Nombre</th>
+                                <th>Segundo Nombre</th>
+                                <th>Primer Apellido</th>
+                                <th>Segundo Apellido</th>
                                 <th>Nombre Corto</th>
                                 <th>Número de Identificación</th>
                                 <th>Teléfono</th>
                                 <th>Correo Eletrónico</th>
-                                <th>Empresa</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -47,24 +49,35 @@
                                         </div>
                                     </td>
                                     <td class="table-user">
-                                        <img src="assets/images/users/user-4.jpg" alt="table-user" class="me-2 rounded-circle">
                                         <a href="javascript:void(0);" class="text-body fw-semibold">{{ item.primerNombre }}</a>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);" class="text-body fw-semibold">{{ item.segundoNombre }}</a>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);" class="text-body fw-semibold">{{ item.primerApellido }}</a>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);" class="text-body fw-semibold">{{ item.segundoApellido }}</a>
                                     </td>
                                     <td>{{ item.nombreCorto }}</td>
                                     <td>{{ item.numeroDeIdentificacion }}</td>
                                     <td>{{ item.numeroDeTelefono }}</td>
                                     <td>{{ item.correoElectronico }}</td>
-                                    <td>{{ item.empresa }}</td>
                                     <td>
                                         <span class="badge badge-soft-success">Active</span>
                                     </td>
                                     <td>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                        <a href="javascript:void(0);" class="action-icon" (click)="openModal(item.id)"> <i class="mdi mdi-square-edit-outline"></i></a>
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
                                     </td>
                                 </tr>
                             } @empty {
-                            <p>No hay personas naturales ingresadas en el sistema aun!</p>
+                                <tr>
+                                    <td colspan="12">
+                                        <p>No hay personas naturales ingresadas en el sistema aun!</p>
+                                    </td>
+                                </tr>
                           }
                         </tbody>
                     </table>

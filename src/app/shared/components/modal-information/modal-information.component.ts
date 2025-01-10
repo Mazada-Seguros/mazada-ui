@@ -1,20 +1,13 @@
-import { 
-  Component, 
-  ComponentFactoryResolver, 
-  Input, 
-  OnInit, 
-  ViewChild, 
-  ViewContainerRef 
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, ViewChild, ViewContainerRef } from '@angular/core';
 
 @Component({
-  selector: 'app-modal',
+  selector: 'app-modal-information',
   standalone: true,
   imports: [],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss'
+  templateUrl: './modal-information.component.html',
+  styleUrl: './modal-information.component.scss'
 })
-export class ModalComponent implements OnInit {
+export class ModalInformationComponent {
   @Input() title!: string;
   @Input() childComponent!: any;
   @Input() data: any;

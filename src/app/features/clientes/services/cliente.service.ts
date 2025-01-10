@@ -17,4 +17,12 @@ export class ClienteService {
   get(): Observable<Response<PersonaNatural[]>> {
     return this.http.get<Response<PersonaNatural[]>>(this.apiUrl);
   }
+
+  getById(id: number): Observable<Response<PersonaNatural>> {
+    return this.http.get<Response<PersonaNatural>>(`${this.apiUrl}/${id}`);
+  }
+
+  post(persona: PersonaNatural): Observable<Response<PersonaNatural[]>> {
+    return this.http.post<Response<PersonaNatural[]>>(this.apiUrl, persona);
+  }
 }

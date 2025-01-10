@@ -1,29 +1,37 @@
-<form [formGroup]="phoneForm" (ngSubmit)="onSubmit()">
-    <div formArrayName="phones">
-        @for(phone of phones.controls; track $index) {
-                <div [formGroupName]="$index" class="row mb-3">
-                    <div class="col-md-5">
-                        <label for="number" class="form-label">Número de Teléfono:</label>
-                        <input id="number" class="form-control" formControlName="number" type="text" placeholder="Número de teléfono" />
-                    </div>
-                    <div class="col-md-5">
-                        <label for="type" class="form-label">Tipo de Teléfono:</label>
-                        <select id="type" formControlName="type" class="form-control">
-                            <option value="">Seleccionar tipo</option>
-                            <option value="mobile">Móvil</option>
-                            <option value="home">Casa</option>
-                            <option value="work">Trabajo</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <br />
-                        <a href="javascript:void(0);" class="action-icon" (click)="removePhone($index)">
-                            <i class="mdi mdi-delete"></i>
-                        </a>
-                    </div>
-                </div>
-        }
-    </div>     
-    <button type="button" (click)="addPhone()">Agregar Teléfono</button>
-    <br />
-</form>
+<div class="card">
+    <div class="row">
+        <div class="col-md-10">
+            <h5 class="card-title mb-0">Números de Teléfono</h5>
+        </div>
+        <div class="col-md-2 align-self-end">
+            <a href="javascript:;" class="action-icon" (click)="addPhone()"><i class="mdi mdi-refresh"></i></a>
+            <a data-bs-toggle="collapse" class="action-icon" href="#cardCollpase1" role="button" aria-expanded="false" aria-controls="cardCollpase1"><i class="mdi mdi-minus"></i></a>
+        </div>
+    </div>
+        <div id="cardCollpase1" class="collapse show">
+            <div class="table-responsive">
+                <table class="table table-borderless mb-0">
+                    <tbody>
+                        @for(phone of phones; track $index) {
+                            <tr>
+                                <td width="50%">
+                                    <select id="type-{{ $index }}" class="form-control dropdown-toggle" [(ngModel)]="phone.type" required>
+                                        <option value="">Seleccionar tipo</option>
+                                        <option value="Móvil">Móvil</option>
+                                        <option value="Casa">Casa</option>
+                                        <option value="Trabajo">Trabajo</option>
+                                    </select>
+                                </td>
+                                <td width="50%">
+                                    <input type="text" id="number-{{ $index }}" class="form-control" [(ngModel)]="phone.number" placeholder="Número de teléfono" required/>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0);" class="action-icon" (click)="removePhone($index)"><i class="mdi mdi-delete"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>

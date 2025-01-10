@@ -1,53 +1,30 @@
-import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-form-telefono',
   standalone: true,
-  imports: [ ReactiveFormsModule ],
+  imports: [ FormsModule ],
   templateUrl: './form-telefono.component.html',
   styleUrl: './form-telefono.component.scss'
 })
 export class FormTelefonoComponent {
-  phoneForm!: FormGroup;
+  @Input() phones: { number: string; type: string }[] = [
+    { number: '', type: '' }, // Iniciar con un campo vacío
+  ];
 
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
-    this.phoneForm = this.fb.group({
-      phones: this.fb.array([this.createPhone()]), // Inicializar con un teléfono
-    });
+  // Agregar un nuevo teléfono
+  addPhone() {
+    this.phones.push({ number: '', type: '' });
   }
 
-  // Crear un grupo de formulario para cada número de teléfono
-  createPhone(): FormGroup {
-    return this.fb.group({
-      number: ['', [Validators.required, Validators.pattern('^[0-9]+$')]], // Validación de número
-      type: ['', Validators.required], // Tipo de teléfono
-    });
+  // Eliminar un teléfono por índice
+  removePhone(index: number) {
+    this.phones.splice(index, 1);
   }
 
-  // Obtener el array de teléfonos
-  get phones(): FormArray {
-    return this.phoneForm!.get('phones') as FormArray;
-  }
-
-  // Agregar un nuevo campo de teléfono
-  addPhone(): void {
-    this.phones.push(this.createPhone());
-  }
-
-  // Eliminar un campo de teléfono
-  removePhone(index: number): void {
-    this.phones.removeAt(index);
-  }
-
-  // Enviar el formulario
-  onSubmit(): void {
-    if (this.phoneForm.valid) {
-      console.log(this.phoneForm.value);
-    } else {
-      console.log('Formulario no válido');
-    }
+  // Enviar los datos
+  onSubmit() {
+    console.log('Datos enviados:', this.phones);
   }
 }
