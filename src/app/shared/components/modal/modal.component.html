@@ -1,19 +1,21 @@
 <!-- Modal -->
-<div class="modal fade show d-block" id="custom-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+<!--<div class="modal fade show d-block" id="custom-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">-->
+<ng-template let-modal>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">{{ title }}</h4>
-                <button type="button" class="btn-close" aria-hidden="true" (click)="closeModal()"></button>
+                <button type="button" class="btn-close" aria-hidden="true" (click)="close()"></button>
             </div>
             <div class="modal-body p-4">
                 <ng-container #dynamicContent></ng-container>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary waves-effect" (click)="closeModal()">Cancelar</button>
-                <button type="button" class="btn btn-info waves-effect waves-light" (click)="submit($event)">Guardar</button>
+                <button type="button" class="btn btn-secondary waves-effect" (click)="close()">Cancelar</button>
+                <button type="button" class="btn btn-info waves-effect waves-light" (click)="submit()">Guardar</button>
             </div>
         </div>
     </div>
-</div>
-<div class="modal-backdrop fade show"></div>
+</ng-template>
+<!--</div>
+<div class="modal-backdrop fade show"></div>-->

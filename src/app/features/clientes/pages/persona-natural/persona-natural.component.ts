@@ -32,8 +32,24 @@ export class PersonaNaturalComponent implements OnInit {
     });
   }
 
-  openModal(id: number | undefined): void {
-    this.modalService.open(AddPersonaNaturalComponent, "Nueva Persona Natural", { id : id });
-    this.fetchList();
-  }
+  /*openModal(id: number | undefined): void {
+    this.modalService
+      .openModal('Nueva Persona Natural', AddPersonaNaturalComponent, { id: id })
+      .then((result: any) => {
+        console.log('Datos enviados desde el evento:', result);
+        this.fetchList();
+      })
+      .catch((reason: any) => console.log('Modal cerrado sin confirmar:', reason));
+  }*/
+  
+  openModal(id: number) {
+    this.modalService.openModal(AddPersonaNaturalComponent, { title : 'Nueva Persona Natural', size : 'lg' }, { id: id })
+    .subscribe({
+      next: (action) => {
+        console.log('modalAction', action);
+        this.fetchList();
+      },
+      error: (reason: any) => console.log('Modal cerrado sin confirmar:', reason)
+    });
+  }   
 }

@@ -1,9 +1,15 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
     <div class="row">
         <div class="col-md-6">
             <div class="mb-3">
                 <label for="primerNombre" class="form-label">Primer Nombre</label>
-                <input type="text" class="form-control" formControlName="primerNombre" placeholder="Ingrese el primer nombre"  required>
+                <input type="text" class="form-control" formControlName="primerNombre" placeholder="Ingrese el primer nombre"
+                    [class.is-invalid]="validate('primerNombre')" required>
+                    @if(validate('primerNombre')) {
+                        <div class="invalid-feedback">
+                            El primer nombre es requerido.
+                        </div>
+                    }
             </div>
         </div>
         <div class="col-md-6">
@@ -17,12 +23,18 @@
         <div class="col-md-6">
             <div class="mb-3">
                 <label for="primerApellido" class="form-label">Primer Apellido</label>
-                <input type="text" class="form-control" formControlName="primerApellido" placeholder="Ingrese el primer apellido" required>
+                <input type="text" class="form-control" formControlName="primerApellido" placeholder="Ingrese el primer apellido"
+                    [class.is-invalid]="validate('primerApellido')" required>
+                @if(validate('primerApellido')) {
+                    <div class="invalid-feedback">
+                        El primer apellido es requerido.
+                    </div>
+                }
             </div>
         </div>
         <div class="col-md-6">
             <div class="mb-3">
-                <label for="segundoApellido" class="form-label">Segundo Nombre</label>
+                <label for="segundoApellido" class="form-label">Segundo Apellido</label>
                 <input type="text" class="form-control" formControlName="segundoApellido" placeholder="Ingrese el segundo apellido">
             </div>
         </div>
@@ -31,7 +43,8 @@
         <div class="col-md-6">
             <div class="mb-3">
                 <label for="tipoDeIdentificacion" class="form-label">Tipo de Identificación</label>
-                <select formControlName="tipoDeIdentificacion" class="form-control dropdown-toggle" required>
+                <select formControlName="tipoDeIdentificacion" class="form-control dropdown-toggle" 
+                    [class.is-invalid]="validate('tipoDeIdentificacion')" required>
                     <option value="">Seleccionar tipo</option>
                     <option value="1">Cédula de ciudadanía (CC)</option>
                     <option value="2">Tarjeta de extranjería (TE)</option>
@@ -41,12 +54,23 @@
                     <option value="6">Permiso especial de permanencia (PEP)</option>
                     <option value="7">Documento de identificación extranjero (DIE)</option>
                 </select>
+                @if(validate('tipoDeIdentificacion')) {
+                    <div class="invalid-feedback">
+                        El tipo de identificación es requerido.
+                    </div>
+                }
             </div>
         </div>
         <div class="col-md-6">
             <div class="mb-3">
                 <label for="numeroDeIdentificacion" class="form-label">Numero de Identificación</label>
-                <input type="text" class="form-control" formControlName="numeroDeIdentificacion" placeholder="Ingrese numero de identificación">
+                <input type="text" class="form-control" formControlName="numeroDeIdentificacion" placeholder="Ingrese numero de identificación"
+                    [class.is-invalid]="validate('numeroDeIdentificacion')" required>
+                    @if(validate('numeroDeIdentificacion')) {
+                        <div class="invalid-feedback">
+                            El número de identificación es requerido.
+                        </div>
+                    }
             </div>
         </div>
     </div>

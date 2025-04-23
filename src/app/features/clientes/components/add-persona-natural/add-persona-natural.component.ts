@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { ModalService } from '../../../../core/services/modal.service';
+import { Component, Input } from '@angular/core';
 import { FormTelefonoComponent } from '../../../../shared/components/form-telefono/form-telefono.component';
 import { PersonaNatural } from '../../models/persona-natural.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ClienteService } from '../../services/cliente.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-persona-natural',
@@ -15,8 +15,7 @@ import { ClienteService } from '../../services/cliente.service';
   templateUrl: './add-persona-natural.component.html',
   styleUrl: './add-persona-natural.component.scss'
 })
-export class AddPersonaNaturalComponent {
-  
+export class AddPersonaNaturalComponent {  
   id: number = 0
   persona: PersonaNatural | undefined;
   form!: FormGroup;
@@ -27,11 +26,10 @@ export class AddPersonaNaturalComponent {
 
   constructor(
     private clienteService: ClienteService,
-    private modalService: ModalService,
-    private fb: FormBuilder
-  ) {
-    this.modalService.action = this.onSubmit.bind(this);
-  }
+    private fb: FormBuilder,
+    public activeModal: NgbActiveModal
+
+  ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -51,16 +49,11 @@ export class AddPersonaNaturalComponent {
     }
   }
 
-  openModal(title: string, content: string) {
-    this.modalService.open({ content }, title);
-  }
-
   fetchPersonaNatural() {
     this.clienteService.getById(this.id)
     .subscribe((response) => {
       console.log(response);
       this.form.patchValue(response.data);
-      //this.form.get('tipoDeIdentificacion')?.setValue(response.data.tipoDeIdentificacion);
       this.phones = [
         { number: response.data.numeroDeTelefono, type: response.data.tipoDeTelefono }, // Iniciar con un campo vacío
       ];
@@ -68,8 +61,8 @@ export class AddPersonaNaturalComponent {
   }
 
 
-  onSubmit(event: Event) {
-    event.preventDefault();
+  onSubmit() : any {
+    console.log(this.form.valid);
     if (this.form.valid) {
       const person = this.form.value as PersonaNatural;
       person.id = this.id;
@@ -79,15 +72,23 @@ export class AddPersonaNaturalComponent {
       }
       this.clienteService.post(person)
         .subscribe(response => {
-          console.log(response);
+          this.activeModal.close(this.form.value);
+          return response;
       });
     } else {
-       // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      const forms = document.querySelectorAll('.needs-validation')
+      this.form.markAllAsTouched();
+      console.log(this.form.errors)
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      /*const forms = document.querySelectorAll('.needs-validation')
       // Loop over them and prevent submission
       Array.from(forms).forEach(form => {
         form.classList.add('was-validated')
-      });
+      });*/
     }
+  }
+
+  validate(field: string) : boolean {
+    const control = this.form.get(field);
+    return control ? control.invalid && control.touched : false;
   }
 }

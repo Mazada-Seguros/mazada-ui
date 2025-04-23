@@ -32,6 +32,6 @@ export class PersonaJuridicaComponent {
   }
 
   openModal(): void {
-    this.modalService.open(AddPersonaJuridicaComponent, "Nueva Persona Juridica");
+    //this.modalService.openModal("Nueva Persona Juridica", AddPersonaJuridicaComponent);
   }
 }

@@ -1,45 +1,51 @@
-import { Injectable, ComponentRef, Injector, ApplicationRef, ComponentFactoryResolver, Input } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ModalService {
-  private modalComponentRef?: ComponentRef<ModalComponent>;
+export class ModalService {  
+  
+  private modalRef!: NgbModalRef;
+  private modalNotifier?: Subject<string>;
 
-  @Input() action!: (event: Event) => void; // Declarar tipo de la función
+  constructor(private modalService: NgbModal) {}
 
-  constructor(
-    private resolver: ComponentFactoryResolver,
-    private injector: Injector,
-    private appRef: ApplicationRef
-  ) {}
+  openModal<T>(
+    component: Type<T>, 
+    options?: { title: string, size?: any },
+    data?: any
+  ) {
+    this.modalRef = this.modalService.open(ModalComponent, { size: options?.size });
+    const modalInstance = this.modalRef.componentInstance as ModalComponent;
 
-  open(component: any, title: string, data?: any): void {
-    const factory = this.resolver.resolveComponentFactory(ModalComponent);
-    this.modalComponentRef = factory.create(this.injector);
+    modalInstance.title = options?.title;
 
-    this.appRef.attachView(this.modalComponentRef.hostView);
+    modalInstance.submitEvent.subscribe();
+    modalInstance.closeEvent.subscribe(() => this.close());
 
-    const modalElement = (this.modalComponentRef.hostView as any).rootNodes[0];
-    document.body.appendChild(modalElement);
+    modalInstance.loadComponent(component, data);      
 
-    this.modalComponentRef.instance.childComponent = component;
-    this.modalComponentRef.instance.title = title;
-    this.modalComponentRef.instance.data = data;
-    this.modalComponentRef.instance.closeModal = () => this.close();
-    this.modalComponentRef.instance.submit = this.submit.bind(this);
+    this.modalNotifier = new Subject();
+    return this.modalNotifier?.asObservable();
   }
 
   close(): void {
-    if (this.modalComponentRef) {
-      this.appRef.detachView(this.modalComponentRef.hostView);
-      this.modalComponentRef.destroy();
+    if (this.modalRef) {
+      this.modalRef.close();
     }
   }
 
-  submit(event: Event): void {
-    this.action(event);
-    this.close();
+  dismiss(): void {
+    if (this.modalRef) {
+      this.modalRef.dismiss();
+    }
   }
+
+  /*submitModal() {
+    this.modalNotifier?.next('confirm');
+    this.close();
+  }*/
 }
